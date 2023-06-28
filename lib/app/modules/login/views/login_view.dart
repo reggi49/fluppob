@@ -1,8 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/login_controller.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
@@ -24,18 +24,87 @@ class LoginView extends GetView<LoginController> {
           decoration: InputDecoration(
               border: OutlineInputBorder(), hintText: 'masukan nomor hape'),
         ),
-        CheckboxListTile(
-          value: false,
-          controlAffinity: ListTileControlAffinity.leading,
-          onChanged: (value) {},
-          title: RichText(
-              text: const TextSpan(
-                  text: "Saya menyetuji ",
-                  style: TextStyle(color: Colors.black),
+        Row(
+          children: [
+            Checkbox(
+              value: false,
+              onChanged: (value) {},
+            ),
+            Expanded(
+              child: RichText(
+                  text: TextSpan(
+                      text: "Saya menyetuji ",
+                      style: const TextStyle(color: Colors.black),
+                      children: [
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            debugPrint("syarat");
+                          },
+                        text: "Syarat, ",
+                        style: const TextStyle(color: Colors.red)),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            debugPrint("ketentuan");
+                          },
+                        text: "Ketentuan",
+                        style: const TextStyle(color: Colors.blue)),
+                    const TextSpan(
+                        text: " dan ", style: TextStyle(color: Colors.blue)),
+                    TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            debugPrint("Privasi");
+                          },
+                        text: "Privasi",
+                        style: const TextStyle(color: Colors.red)),
+                  ])),
+            )
+          ],
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+          child: const Text(
+            "Login",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+        const Center(
+          child: Text("Atau masuk menggunakan"),
+        ),
+        Row(
+          children: [
+            OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.amber))),
+                child: const Row(
                   children: [
-                TextSpan(
-                    text: "sddsddsdsas", style: TextStyle(color: Colors.red)),
-              ])),
+                    FaIcon(FontAwesomeIcons.google, color: Colors.red),
+                    Text(
+                      "Google",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ],
+                )),
+            OutlinedButton(
+                onPressed: () {},
+                style: OutlinedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.amber))),
+                child: const Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.facebook),
+                    Text(
+                      "Facebook",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ],
+                ))
+          ],
         )
       ]),
     );
