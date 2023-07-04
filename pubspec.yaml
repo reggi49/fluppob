@@ -1,7 +1,7 @@
 name: bogorstore
 version: 1.0.0+1
 publish_to: none
-description: Application PPOB Powered by Bogorstore.2023-06-28-11-00-02.png
+description: Application PPOB Powered by Bogorstore
 environment:
   sdk: ">=3.0.5 <4.0.0"
 
