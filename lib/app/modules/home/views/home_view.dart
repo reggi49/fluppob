@@ -200,6 +200,102 @@ class HomeView extends GetView<HomeController> {
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                    ItemCategory(
+                                      icon: "internet",
+                                      title: "Internet",
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Terbaru dari Telkomsel",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text("Lihat Semua"),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SingleChildScrollView(
+                                  child: Row(
+                                    children: [
+                                      ItemTerbaru(
+                                        image: "assets/icon/internet.png",
+                                      ),
+                                      ItemTerbaru(
+                                        image: "assets/icon/internet.png",
+                                      ),
+                                      ItemTerbaru(
+                                        image: "assets/icon/internet.png",
+                                      ),
+                                      ItemTerbaru(
+                                        image: "assets/icon/internet.png",
+                                      ),
+                                      ItemTerbaru(
+                                        image: "assets/icon/internet.png",
+                                      ),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
@@ -250,6 +346,64 @@ class HomeView extends GetView<HomeController> {
             )
           ],
         ));
+  }
+}
+
+class ItemTerbaru extends StatelessWidget {
+  const ItemTerbaru({
+    super.key,
+    required this.image,
+  });
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(right: 20),
+      width: Get.width * 0.7,
+      height: 75,
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(20),
+        image: DecorationImage(
+          image: AssetImage(image),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+class ItemCategory extends StatelessWidget {
+  const ItemCategory({
+    super.key,
+    required this.icon,
+    required this.title,
+  });
+
+  final String title;
+  final String icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 50,
+          height: 50,
+          color: Colors.amber,
+          child: Image.asset("assets/icons/$icon.png"),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          title,
+          style: const TextStyle(fontSize: 16),
+        )
+      ],
+    );
   }
 }
 
