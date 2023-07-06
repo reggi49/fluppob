@@ -185,23 +185,58 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Expanded(
                     child: Container(
-                      color: Colors.blue,
+                      // color: Colors.blue,
                       child: Column(
                         children: [
                           //body
                           Expanded(
-                            child: Container(),
+                            child: ListView(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              children: const [
+                                SizedBox(height: 20),
+                                Text(
+                                  "Kategori Paket",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
                           ),
                           Container(
-                            height: 100,
-                            color: Colors.amber,
+                            // margin: const EdgeInsets.only(bottom: 10),
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ),
+                            height: 80,
+                            // color: Colors.amber,
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ItemNav(
                                   status: true,
-                                  title: "beranda",
-                                  icon: "heart",
+                                  title: "Beranda",
+                                  icon: "house",
+                                ),
+                                ItemNav(
+                                  status: false,
+                                  title: "Riwayat",
+                                  icon: "invoice",
+                                ),
+                                ItemNav(
+                                  status: false,
+                                  title: "Bantuan",
+                                  icon: "message",
+                                ),
+                                ItemNav(
+                                  status: false,
+                                  title: "Profile",
+                                  icon: "user",
                                 ),
                               ],
                             ),
@@ -232,9 +267,9 @@ class ItemNav extends StatelessWidget {
 
   final Map<String, IconData> iconDataMap = const {
     "house": FontAwesomeIcons.house,
-    "heart": FontAwesomeIcons.heart,
-    "star": FontAwesomeIcons.star,
-    // Add more icon mappings as needed
+    "invoice": FontAwesomeIcons.fileInvoiceDollar,
+    "message": FontAwesomeIcons.personCircleQuestion,
+    "user": FontAwesomeIcons.solidUser,
   };
 
   @override
@@ -246,13 +281,19 @@ class ItemNav extends StatelessWidget {
           height: 30,
           child: FaIcon(
             iconDataMap[icon],
-            color: (status == true) ? Colors.red : Colors.white,
+            color: (status == true)
+                ? Colors.red
+                : const Color.fromARGB(255, 155, 154, 154),
           ),
         ),
         const SizedBox(height: 5),
         Text(
-          "Beranda",
-          style: TextStyle(color: (status == true) ? Colors.red : Colors.white),
+          title,
+          style: TextStyle(
+            color: (status == true)
+                ? Colors.red
+                : const Color.fromARGB(255, 155, 154, 154),
+          ),
         ),
       ],
     );
