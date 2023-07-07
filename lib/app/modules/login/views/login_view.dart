@@ -86,7 +86,7 @@ class LoginView extends GetView<LoginController> {
           Container(
             margin: EdgeInsets.only(top: 20),
             child: ElevatedButton(
-              onPressed: () => Get.offAllNamed(Routes.HOME),
+              onPressed: () => Get.offAllNamed(Routes.home),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
               child: const Text(
                 "Login",
