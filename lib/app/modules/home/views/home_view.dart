@@ -224,21 +224,15 @@ class HomeView extends GetView<HomeController> {
                                       icon: "internet",
                                       title: "Internet",
                                     ),
-                                    ItemCategory(
-                                      icon: "internet",
-                                      title: "Internet",
-                                    ),
-                                    SizedBox(
-                                      height: 30,
-                                    ),
-                                    ItemCategory(
-                                      icon: "internet",
-                                      title: "Internet",
-                                    ),
-                                    ItemCategory(
-                                      icon: "internet",
-                                      title: "Internet",
-                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
                                     ItemCategory(
                                       icon: "internet",
                                       title: "Internet",
@@ -277,26 +271,21 @@ class HomeView extends GetView<HomeController> {
                                   height: 10,
                                 ),
                                 SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
                                   child: Row(
                                     children: [
                                       ItemTerbaru(
-                                        image: "assets/icon/internet.png",
+                                        image: "assets/images/banner-1.png",
                                       ),
                                       ItemTerbaru(
-                                        image: "assets/icon/internet.png",
-                                      ),
-                                      ItemTerbaru(
-                                        image: "assets/icon/internet.png",
-                                      ),
-                                      ItemTerbaru(
-                                        image: "assets/icon/internet.png",
-                                      ),
-                                      ItemTerbaru(
-                                        image: "assets/icon/internet.png",
+                                        image: "assets/images/banner-2.png",
                                       ),
                                     ],
                                   ),
-                                )
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
                               ],
                             ),
                           ),
@@ -360,7 +349,7 @@ class ItemTerbaru extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 20),
+      margin: const EdgeInsets.only(right: 20),
       width: Get.width * 0.7,
       height: 75,
       decoration: BoxDecoration(
