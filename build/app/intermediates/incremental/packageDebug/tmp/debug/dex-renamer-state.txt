@@ -1,0 +1,4 @@
+#Wed Jan 03 15:16:52 WIB 2024
+base.0=/Users/regi/Documents/fluppob/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
