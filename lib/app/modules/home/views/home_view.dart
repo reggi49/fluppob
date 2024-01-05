@@ -1,4 +1,5 @@
 import 'package:bogorstore/app/data/models/surah.dart';
+import 'package:bogorstore/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,8 @@ class HomeView extends GetView<HomeController> {
             itemBuilder: (context, index) {
               Surah surah = snapshot.data![index];
               return ListTile(
-                onTap: () => {},
+                onTap: () =>
+                    {Get.toNamed(Routes.DETAIL_SURAH, arguments: surah)},
                 leading: CircleAvatar(
                   child: Text("${surah.number}"),
                 ),
