@@ -1,3 +1,4 @@
+import 'package:bogorstore/app/data/models/detailSurah.dart' as detail;
 import 'package:bogorstore/app/data/models/surah.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,60 @@ class DetailSurahView extends GetView<DetailSurahController> {
                   ],
                 ),
               ),
-            )
+            ),
+            SizedBox(height: 20),
+            FutureBuilder<detail.DetailSurah>(
+                future: controller.getDetailSurah(surah.number.toString()),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: Text("Tidak ada Data"),
+                    );
+                  }
+                  return Expanded(
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data?.verses?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          detail.Verse? ayat = snapshot.data?.verses?[index];
+                          return Column(
+                            children: [
+                              Card(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 30),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CircleAvatar(child: Text("1")),
+                                      Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                  Icons.bookmark_add_outlined)),
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.play_arrow))
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Text("data"),
+                              SizedBox(height: 20),
+                            ],
+                          );
+                        }),
+                  );
+                }),
           ],
         ));
   }
