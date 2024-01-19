@@ -6,8 +6,10 @@ abstract class Routes {
   static const home = _Paths.home;
   static const login = _Paths.login;
   static const INTRODUCTION = _Paths.INTRODUCTION;
-  static const DETAILL_SURAH = _Paths.DETAILL_SURAH;
   static const DETAIL_SURAH = _Paths.DETAIL_SURAH;
+  static const SEARCH = _Paths.SEARCH;
+  static const LAST_READ = _Paths.LAST_READ;
+  static const DETAIL_JUZ = _Paths.DETAIL_JUZ;
 }
 
 abstract class _Paths {
@@ -15,6 +17,8 @@ abstract class _Paths {
   static const home = '/home';
   static const login = '/login';
   static const INTRODUCTION = '/introduction';
-  static const DETAILL_SURAH = '/detaill-surah';
   static const DETAIL_SURAH = '/detail-surah';
+  static const SEARCH = '/search';
+  static const LAST_READ = '/last-read';
+  static const DETAIL_JUZ = '/detail-juz';
 }

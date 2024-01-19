@@ -1,3 +1,4 @@
+import 'package:bogorstore/app/constant/colors.dart';
 import 'package:bogorstore/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -15,16 +16,20 @@ class IntroductionView extends GetView<IntroductionController> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Al-Quran App'),
+          Text(
+            'Al-Quran App',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              // color: appPurple,
+            ),
+          ),
           SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Text(
               "Sesibuk itukah kamu sampai belum membaca alquran ?",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-              ),
             ),
           ),
           SizedBox(height: 20),
@@ -34,8 +39,16 @@ class IntroductionView extends GetView<IntroductionController> {
               child: Lottie.asset("assets/lotties/animasi-quran.json")),
           SizedBox(height: 20),
           ElevatedButton(
-              onPressed: () => Get.offAllNamed(Routes.home),
-              child: Text("Mulai"))
+            onPressed: () => Get.offAllNamed(Routes.home),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Get.isDarkMode ? appWhite : appPurple),
+            child: Text(
+              "Mulai ",
+              textAlign: TextAlign.center,
+              style:
+                  TextStyle(color: Get.isDarkMode ? appPurpleDark : appWhite),
+            ),
+          )
         ],
       ),
     ));

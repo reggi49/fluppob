@@ -1,3 +1,4 @@
+import 'package:bogorstore/app/constant/colors.dart';
 import 'package:bogorstore/app/data/models/detailSurah.dart' as detail;
 import 'package:bogorstore/app/data/models/surah.dart';
 import 'package:flutter/material.dart';
@@ -18,30 +19,63 @@ class DetailSurahView extends GetView<DetailSurahController> {
           centerTitle: true,
         ),
         body: ListView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 10,
+            vertical: 5,
+          ),
           children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Text(
-                      "${surah.name?.transliteration?.id?.toUpperCase() ?? 'Error'}",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: () => Get.defaultDialog(
+                title: "Tafsir",
+                titleStyle: TextStyle(fontWeight: FontWeight.bold),
+                content: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Container(
+                    child: Text(
+                      "${surah.tafsir?.id ?? "Tidak ada tafsir pada surah ini"}",
+                      textAlign: TextAlign.start,
                     ),
-                    Text(
-                      "(${surah.name?.translation?.id?.toUpperCase() ?? 'Error'})",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "${surah.numberOfVerses ?? 'Error'} Ayat || ${surah.revelation?.id}",
-                      style: TextStyle(fontSize: 16),
-                    )
-                  ],
+                  ),
+                ),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(
+                    colors: [appPurpleLight1, appPurpleDark],
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 5,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        "${surah.name?.transliteration?.id?.toUpperCase() ?? 'Error'}",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: appWhite),
+                      ),
+                      Text(
+                        "(${surah.name?.translation?.id?.toUpperCase() ?? 'Error'})",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: appWhite),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "${surah.numberOfVerses ?? 'Error'} Ayat || ${surah.revelation?.id}",
+                        style: TextStyle(fontSize: 16, color: appWhite),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -59,44 +93,76 @@ class DetailSurahView extends GetView<DetailSurahController> {
                       child: Text("Tidak ada Data"),
                     );
                   }
-                  return Expanded(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data?.verses?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          detail.Verse? ayat = snapshot.data?.verses?[index];
-                          return Column(
-                            children: [
-                              Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 30),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      CircleAvatar(child: Text("1")),
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(
-                                                  Icons.bookmark_add_outlined)),
-                                          IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(Icons.play_arrow))
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: snapshot.data?.verses?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        if (snapshot.data?.verses?.length == 0) {
+                          return SizedBox(
+                            child: Text("Tidak ada Data"),
+                          );
+                        }
+                        detail.Verse? ayat = snapshot.data?.verses?[index];
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: appGrey.withOpacity(0.3)),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CircleAvatar(
+                                      child: Text("${ayat?.number?.inQuran}"),
+                                    ),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {},
+                                          icon:
+                                              Icon(Icons.bookmark_add_outlined),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(Icons.play_arrow),
+                                        )
+                                      ],
+                                    )
+                                  ],
                                 ),
                               ),
-                              Text("data"),
-                              SizedBox(height: 20),
-                            ],
-                          );
-                        }),
-                  );
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "${ayat?.text?.arab}",
+                              style: TextStyle(
+                                fontSize: 25,
+                              ),
+                              textAlign: TextAlign.end,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "${ayat?.translation?.en}",
+                              style: TextStyle(
+                                  fontSize: 18, fontStyle: FontStyle.italic),
+                              textAlign: TextAlign.end,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "${ayat?.translation?.id}",
+                              style: TextStyle(fontSize: 18),
+                              textAlign: TextAlign.start,
+                            ),
+                            SizedBox(height: 50),
+                          ],
+                        );
+                      });
                 }),
           ],
         ));
